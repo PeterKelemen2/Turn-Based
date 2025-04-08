@@ -1,9 +1,12 @@
 package peti.dev;
 
 import peti.dev.controller.CombatController;
+import peti.dev.controller.TurnController;
 import peti.dev.model.Enemy;
 import peti.dev.model.Entity;
 import peti.dev.model.Player;
+
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -21,11 +24,15 @@ public class Main {
 //        player.attack(enemy);
         CombatController combatController = new CombatController(player, new Enemy[]{enemy});
 
+        TurnController turnController = new TurnController();
+
+
         while (true) {
             long startTime = System.nanoTime();
 //            System.out.println("Start: " + startTime);
 
-            combatController.doTurn();
+//            combatController.doTurn();
+            turnController.doTurn();
 
             long endTime = System.nanoTime();
 //            System.out.println("End: " + endTime);

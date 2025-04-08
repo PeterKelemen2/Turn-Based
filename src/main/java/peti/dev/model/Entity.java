@@ -24,7 +24,7 @@ public class Entity {
 
         target.setHp(targetNewHp);
 
-        System.out.println(name + "attacks" + target.getName());
+        System.out.println(name + " attacks " + target.getName());
         System.out.println(this + "\n" + target);
     }
 
