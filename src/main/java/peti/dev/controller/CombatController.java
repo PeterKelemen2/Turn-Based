@@ -3,17 +3,20 @@ package peti.dev.controller;
 import peti.dev.model.Enemy;
 import peti.dev.model.Player;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class CombatController {
     private Player player;
-    private Enemy[] enemyArray;
+    //    private ArrayList<Enemy> asdasd;
+    private ArrayList<Enemy> enemyList;
 
     private boolean isPlayersTurn;
 
-    public CombatController(Player player, Enemy[] enemyArray) {
+    public CombatController(Player player, ArrayList<Enemy> enemyList) {
         this.player = player;
-        this.enemyArray = enemyArray;
+        this.enemyList = enemyList;
         Random rnd = new Random();
         this.isPlayersTurn = rnd.nextBoolean();
     }
@@ -29,12 +32,12 @@ public class CombatController {
         this.player = player;
     }
 
-    public Enemy[] getEnemyArray() {
-        return enemyArray;
+    public ArrayList<Enemy> getEnemyList() {
+        return enemyList;
     }
 
-    public void setEnemyArray(Enemy[] enemyArray) {
-        this.enemyArray = enemyArray;
+    public void setEnemyList(ArrayList<Enemy> enemyList) {
+        this.enemyList = enemyList;
     }
 
     public boolean isPlayersTurn() {
@@ -47,11 +50,23 @@ public class CombatController {
 
     public void doTurn() {
         if (isPlayersTurn) {
-            player.attack(enemyArray[0]);
+            System.out.println("List of enemies:");
+            for (int i = 0; i < enemyList.size() - 1; i++) {
+                System.out.println(i + " - " + enemyList.get(i));
+            }
+            System.out.println();
+
+            Scanner scanner = new Scanner(System.in);
+            String option = scanner.nextLine();
+            System.out.println(option);
         } else {
-            enemyArray[0].attack(player);
+            enemyList.getFirst().attack(player);
         }
 
         isPlayersTurn = !isPlayersTurn;
     }
+
+//    public void playCombat(){
+//        while
+//    }
 }
