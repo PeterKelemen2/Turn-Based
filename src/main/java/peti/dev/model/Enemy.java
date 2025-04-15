@@ -9,6 +9,11 @@ public class Enemy extends Entity {
         super(name);
     }
 
+    public Enemy(String name, int lvl) {
+        super(name, lvl);
+    }
+
     public Enemy() {
     }
+
 }
