@@ -7,11 +7,26 @@ public class Entity {
     private double damage = 1;
     private int level = 1;
 
+    private final double baseHp = 10;
+    private final double baseDmg = 1;
+    private final double hpModifier = 1.1;
+    private final double dmgModifier = 1.2;
+
+
     public Entity(String name, double hp, double damage) {
         this.name = name;
         this.hp = hp;
         this.maxHp = hp;
         this.damage = damage;
+    }
+
+    public Entity(String name, int level) {
+        this.name = name;
+        this.level = level;
+
+        this.maxHp = baseHp * Math.pow(hpModifier, level);
+        this.hp = this.maxHp;
+        this.damage = baseDmg * Math.pow(dmgModifier, level);
     }
 
     public Entity(String name) {
@@ -72,8 +87,8 @@ public class Entity {
 
     public void levelUp() {
         setLevel(this.level + 1);
-        this.damage *= 1.1;
-        this.maxHp *= 1.1;
+        this.damage *= dmgModifier;
+        this.maxHp *= hpModifier;
     }
 
     @Override
