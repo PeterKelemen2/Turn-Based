@@ -1,5 +1,7 @@
 package peti.dev.controller;
 
+import peti.dev.model.Player;
+
 import java.util.HashMap;
 import java.util.Random;
 
@@ -13,8 +15,18 @@ enum Turn {
 public class TurnController {
     private Turn turn = Turn.IDLE;
     private Random rnd = new Random();
+    private Player player;
 
-    public TurnController() {
+    public TurnController(Player p) {
+        this.player = p;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Turn getTurn() {
@@ -45,6 +57,8 @@ public class TurnController {
                 break;
             case Turn.COMBAT:
                 System.out.println("Player is attacked!");
+
+//                CombatController combat = new CombatController(player, );
                 break;
             case Turn.WALKING:
                 System.out.println("Player is walking!");
