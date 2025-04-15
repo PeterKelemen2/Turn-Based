@@ -2,13 +2,15 @@ package peti.dev.model;
 
 public class Entity {
     private String name;
-    private int hp = 10;
-    private int damage = 1;
+    private double hp = 10;
+    private double maxHp = 10;
+    private double damage = 1;
     private int level = 1;
 
-    public Entity(String name, int hp, int damage) {
+    public Entity(String name, double hp, double damage) {
         this.name = name;
         this.hp = hp;
+        this.maxHp = hp;
         this.damage = damage;
     }
 
@@ -20,7 +22,7 @@ public class Entity {
     }
 
     public void attack(Entity target) {
-        int targetNewHp = target.getHp() - getDamage();
+        double targetNewHp = target.getHp() - getDamage();
 
         target.setHp(targetNewHp);
 
@@ -36,19 +38,27 @@ public class Entity {
         this.name = name;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp;
     }
 
-    public int getDamage() {
+    public double getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(double maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public double getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    public void setDamage(double damage) {
         this.damage = damage;
     }
 
@@ -60,9 +70,15 @@ public class Entity {
         this.level = level;
     }
 
+    public void levelUp() {
+        setLevel(this.level + 1);
+        this.damage *= 1.1;
+        this.maxHp *= 1.1;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + " {" +
-                "name=" + name + ", hp=" + hp + ", damage=" + damage + ", level=" + level + '}';
+                "name=" + name + ", hp=" + maxHp + "/" + hp + ", damage=" + damage + ", level=" + level + '}';
     }
 }
